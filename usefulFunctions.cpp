@@ -85,6 +85,42 @@ bool sameButReordered(ll n1, ll n2)
 	return true;
 }
 
+struct nChooseR{
+
+	ll table[1000][1000];
+
+	nChooseR() {
+		for(ll i = 0; i < 1000; i++)
+		{
+			for(ll j = 0; j < 1000; j++)
+			{
+				table[i][j] = -1;
+			}
+		}
+	}
+
+	ll querry(ll n, ll r)
+	{
+		if(table[n][r] != -1)
+		{
+			return table[n][r];
+		}
+		
+		if(n == r)
+		{
+			return 1;
+		}
+		if(r == 0)
+		{
+			return 1;
+		}
+		ll val = querry(n - 1, r - 1) + querry(n - 1, r);
+		table[n][r] = val;
+		return val;
+	}
+	
+};
+
 
 int main()
 {
