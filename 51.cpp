@@ -154,12 +154,12 @@ int main()
   num.push_back(3);
   replaceDigit(num, visited, 2, 11, 0);*/
   
-  for(ll i = 120383; true; i++)
+  for(ll i = 2; true; i++)
   {
   	//cout << i << endl;
   	if(isPrime(i) && maxNum(i) == 8)
   	{
-  		//cout << i << endl;
+  		cout << i << endl;
   		break;
   	}
   }
