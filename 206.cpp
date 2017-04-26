@@ -37,7 +37,6 @@ int main()
 	for(ll i = 0; i <= 1000000000; i++)
 	{
 		//cout << i*i << " " << diff << endl;
-		if
 		ll temp = i;
 		ll build = 1;
 		build *= 10;
