@@ -4,6 +4,72 @@ using namespace std;
 
 typedef long long ll;
 
+ll gcd(ll n, ll m)
+{
+	if(m == 0)
+		return n;
+	return gcd(m, n %m);
+}
+
+ll continuedFraction(ll num)
+{
+  ll intPart = sqrt(num);
+  
+  ll underSqrt = num;
+  ll frontSqrt = 1;
+  ll added = -1 * intPart;
+  ll underFrac = 1;
+  
+  while(true)
+  { 
+ 		
+ 		cout << intPart << endl;
+ 		
+  	//Flipping fraction
+  	ll tempFrontSqrt = underFrac * frontSqrt;
+  	ll tempAdded = -1 * underFrac * added;
+  	ll tempUnderFrac = underSqrt - added * added;
+  	ll commenFactor = gcd(gcd(abs(tempFrontSqrt), abs(tempAdded)), abs(tempUnderFrac));
+  	tempFrontSqrt /= commenFactor;
+  	tempAdded /= commenFactor;
+  	tempUnderFrac /= commenFactor;
+  	
+  	frontSqrt = tempFrontSqrt;
+  	added = tempAdded;
+  	underFrac = tempUnderFrac;
+  	
+  	//Remove Integer
+  	ll integerPart = (sqrt((double)underSqrt) + added) / ((double)underFrac);
+  	intPart = integerPart;
+  	added -= intPart * underFrac;
+  	
+  }
+  
+}
+
+ll getPeriod(ll num)
+{
+	vector<ll> info;
+	continuedFraction(num, info);
+	for(int i = 1; i < 1000; i++)
+	{
+		bool valid = true;
+		for(int j = 0; j < 1000; j++)
+		{
+			if(info.at(j % i) != info.at(j))
+			{
+				valid = false;
+				break;
+			}
+		}
+		if(valid)
+		{
+			return i;
+		}
+	}
+	return 0;
+}
+
 bool ispandigital(vector<ll> &nums)
 {
   ll digits[10];
