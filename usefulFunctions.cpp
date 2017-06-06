@@ -187,6 +187,38 @@ struct nChooseR{
 	
 };
 
+ll lowestPrime(ll n)
+{
+    ll sqrtN = sqrt(n);
+    for(int i = 2; i <= sqrtN; i++)
+    {
+        if(n % i == 0)
+        {
+            return i;
+        }
+    }
+    
+    return n;
+}
+
+
+ll totient(ll n)
+{
+    ll sol = 1;
+    while(n > 1)
+    {
+        ll prime = lowestPrime(n);
+        ll powN = 0;
+        while(n % prime == 0)
+        {
+            n /= prime;
+            powN++;
+        }
+        sol *= pow(prime, powN) - pow(prime, powN - 1);
+    }
+    return sol;
+}
+
 
 int main()
 {
