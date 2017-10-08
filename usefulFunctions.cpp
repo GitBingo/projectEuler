@@ -4,6 +4,31 @@ using namespace std;
 
 typedef long long ll;
 
+//Given a matrix compute the row reduce ecelont form
+void RowReduce(ll nrows, ll ncols)
+{
+
+    ll lead = 0; 
+
+    while (lead < nrows) {
+        double d, m;
+
+        for (ll r = 0; r < nrows; r++) { 
+            d = matrix[lead][lead];
+            m = matrix[r][lead] / matrix[lead][lead];
+
+            for (ll c = 0; c < ncols; c++) { 
+                if (r == lead)
+                    matrix[r][c] /= d;               
+                else
+                    matrix[r][c] -= matrix[lead][c] * m; 
+            }
+        }
+
+        lead++;
+    }
+}
+
 ll gcd(ll n, ll m)
 {
 	if(m == 0)
@@ -46,6 +71,8 @@ ll continuedFraction(ll num)
   }
   
 }
+
+
 
 ll getPeriod(ll num)
 {
